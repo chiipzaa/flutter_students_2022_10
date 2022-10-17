@@ -15,9 +15,8 @@ class _LoginPageState extends State<LoginPage> {
         title: Text("Login"),
       ),
       body: Container(
-        color: Colors.red,
-        height: 200,
-        width: 100,
+        height: double.infinity,
+        width: double.infinity,
         child: Text("Login"),
       ),
     );
