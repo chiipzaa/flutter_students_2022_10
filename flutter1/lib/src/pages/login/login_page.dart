@@ -85,8 +85,8 @@ class _LoginFormState extends State<LoginForm> {
 
                 const SizedBox(height: 32),
                 // Login button
-                ElevatedButton(onPressed: () {}, child: Text("Login")),
-                OutlinedButton(onPressed: () {}, child: Text("Register")),
+                ElevatedButton(onPressed: () => print("Clicked: Login"), child: Text("Login")),
+                OutlinedButton(onPressed: () => print("Clicked: Register"), child: Text("Register")),
                 TextButton(onPressed: () {}, child: Text("Clear")),
               ],
             ),
