@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/pages/login/widgets/cmtext.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,10 +20,9 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         child: Column(
           children: [
-            Container(
-              color: Colors.yellow,
-              child: Text("Login"),
-            ),
+            CMText(),
+            CMText(),
+            CMText(),
           ],
         ),
       ),
