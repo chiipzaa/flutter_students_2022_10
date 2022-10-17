@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/pages/home/home_page.dart';
+import 'package:flutter1/src/pages/login/login_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CMApp extends StatelessWidget {
+  const CMApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Workshop'),
+      home: LoginPage(),
     );
   }
 }
