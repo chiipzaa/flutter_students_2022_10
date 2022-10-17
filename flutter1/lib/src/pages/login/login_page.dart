@@ -13,18 +13,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
       body: Container(
-        color: Colors.black,
         height: double.infinity,
         width: double.infinity,
         child: Column(
           children: [
-            Image.asset(
-              Asset.logoImage,
-              width: double.infinity,
+            Container(
+              color: Colors.black,
+              child: Image.asset(
+                Asset.logoImage,
+                width: double.infinity,
+              ),
             ),
             LoginForm()
           ],
