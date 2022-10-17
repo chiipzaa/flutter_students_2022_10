@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -42,26 +43,25 @@ class CustomDrawer extends StatelessWidget {
         children: [
           _buildProfile(),
           ListTile(
-            onTap: (){},
+            onTap: () {},
             title: Text("BarCode"),
-            leading: const Icon(Icons.code_rounded, color: Colors.deepOrange),
+            leading: const FaIcon(FontAwesomeIcons.barcode, color: Colors.deepOrange),
           ),
           ListTile(
-            onTap: (){},
+            onTap: () {},
             title: Text("QRCode"),
             leading: Icon(Icons.qr_code, color: Colors.green),
           ),
           ListTile(
-            onTap: (){},
+            onTap: () {},
             title: Text("Scanner"),
             leading: const Icon(Icons.qr_code_scanner, color: Colors.blueGrey),
           ),
           ListTile(
-            onTap: (){},
+            onTap: () {},
             title: Text("Map"),
             leading: Icon(Icons.map_outlined, color: Colors.blue),
           ),
-
         ],
       ),
     );
