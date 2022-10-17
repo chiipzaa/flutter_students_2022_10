@@ -55,14 +55,27 @@ class _LoginFormState extends State<LoginForm> {
       child: Card(
         child: Container(
           color: Colors.white,
-          child: TextField(
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                hintText: 'codemobiles@gmail.com',
-                labelText: 'Username',
-                icon: Icon(Icons.email),
-              )
-
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: const [
+                TextField(
+                    decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'codemobiles@gmail.com',
+                  labelText: 'Username',
+                  icon: Icon(Icons.email),
+                )),
+                TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Password',
+                      labelText: 'Password',
+                      icon: Icon(Icons.password),
+                    ))
+              ],
+            ),
           ),
         ),
       ),
