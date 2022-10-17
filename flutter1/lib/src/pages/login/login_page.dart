@@ -17,7 +17,13 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        child: Text("Login"),
+        child: Column(
+          children: [
+            Text("Login"),
+            Text("Login"),
+            Text("Login"),
+          ],
+        ),
       ),
     );
   }
