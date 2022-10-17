@@ -20,9 +20,9 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         child: Column(
           children: [
-            CMText(),
-            CMText(),
-            CMText(),
+            CMText("CodeMobiles1"),
+            CMText("CodeMobiles2"),
+            CMText("CodeMobiles3"),
           ],
         ),
       ),
