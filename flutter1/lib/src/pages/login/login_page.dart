@@ -16,10 +16,12 @@ class _LoginPageState extends State<LoginPage> {
         title: Text("Login"),
       ),
       body: Container(
+        color: Colors.black,
         height: double.infinity,
         width: double.infinity,
         child: Column(
           children: [
+            Image.asset("assets/images/logo.png", width: double.infinity,),
             CMText(
               "CodeMobiles1",
               color: Colors.yellow,
