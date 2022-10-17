@@ -20,9 +20,12 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Container(
               color: Colors.black,
-              child: Image.asset(
-                Asset.logoImage,
-                width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 24.0),
+                child: Image.asset(
+                  Asset.logoImage,
+                  width: double.infinity,
+                ),
               ),
             ),
             LoginForm()
