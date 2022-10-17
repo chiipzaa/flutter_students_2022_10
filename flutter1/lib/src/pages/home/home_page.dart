@@ -67,6 +67,14 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
+  Builder _buildLogoutButton() => Builder(
+    builder: (context) => SafeArea(
+      child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
+    ),
+  );
+
+
+
   UserAccountsDrawerHeader _buildProfile() => UserAccountsDrawerHeader(
         currentAccountPicture: Container(
           child: const CircleAvatar(
