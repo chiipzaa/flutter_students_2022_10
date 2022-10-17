@@ -58,22 +58,26 @@ class _LoginFormState extends State<LoginForm> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              children: const [
-                TextField(
+              children:  [
+                // Username
+                const TextField(
                     decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'codemobiles@gmail.com',
                   labelText: 'Username',
                   icon: Icon(Icons.email),
                 )),
-                TextField(
+                // Password
+                const TextField(
                     obscureText: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Password',
                       labelText: 'Password',
                       icon: Icon(Icons.password),
-                    ))
+                    )),
+                // Login button
+                ElevatedButton(onPressed: () {}, child: Text("Login"))
               ],
             ),
           ),
