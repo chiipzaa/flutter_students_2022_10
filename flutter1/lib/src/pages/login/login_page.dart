@@ -28,7 +28,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            LoginForm()
+            const Expanded(
+              child: SingleChildScrollView(
+                child: LoginForm(),
+              ),
+            )
           ],
         ),
       ),
@@ -53,11 +57,13 @@ class _LoginFormState extends State<LoginForm> {
         top: 32,
       ),
       child: Card(
+        elevation: 7,
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Username
                 const TextField(
@@ -76,10 +82,12 @@ class _LoginFormState extends State<LoginForm> {
                       labelText: 'Password',
                       icon: Icon(Icons.password),
                     )),
+
+                const SizedBox(height: 32),
                 // Login button
                 ElevatedButton(onPressed: () {}, child: Text("Login")),
-                ElevatedButton(onPressed: () {}, child: Text("Register")),
-                ElevatedButton(onPressed: () {}, child: Text("Clear")),
+                OutlinedButton(onPressed: () {}, child: Text("Register")),
+                TextButton(onPressed: () {}, child: Text("Clear")),
               ],
             ),
           ),
