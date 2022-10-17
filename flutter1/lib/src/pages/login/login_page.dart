@@ -48,6 +48,16 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    _usernameController.text = "admin";
+    _passwordController.text = "1234";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -66,17 +76,19 @@ class _LoginFormState extends State<LoginForm> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Username
-                const TextField(
-                    decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'codemobiles@gmail.com',
-                  labelText: 'Username',
-                  icon: Icon(Icons.email),
-                )),
+                TextField(
+                    controller: _usernameController,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'codemobiles@gmail.com',
+                      labelText: 'Username',
+                      icon: Icon(Icons.email),
+                    )),
                 // Password
-                const TextField(
+                TextField(
+                    controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Password',
                       labelText: 'Password',
@@ -85,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
 
                 const SizedBox(height: 32),
                 // Login button
-                ElevatedButton(onPressed: () => print("Clicked: Login"), child: Text("Login")),
+                ElevatedButton(onPressed: () => print("Clicked: Login ${_usernameController.text}"), child: Text("Login")),
                 OutlinedButton(onPressed: () => print("Clicked: Register"), child: Text("Register")),
                 TextButton(onPressed: () {}, child: Text("Clear")),
               ],
