@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/constants/asset.dart';
 import 'package:flutter1/src/pages/login/widgets/cmtext.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,22 +22,31 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         child: Column(
           children: [
-            Image.asset("assets/images/logo.png", width: double.infinity,),
-            CMText(
-              "CodeMobiles1",
-              color: Colors.yellow,
+            Image.asset(
+              Asset.logoImage,
+              width: double.infinity,
             ),
-            CMText(
-              "CodeMobiles2",
-              color: Colors.red,
-            ),
-            CMText(
-              "CodeMobiles3",
-              color: Colors.blue,
-            ),
+            LoginForm()
           ],
         ),
       ),
+    );
+  }
+}
+
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: Text("1234"),
     );
   }
 }
