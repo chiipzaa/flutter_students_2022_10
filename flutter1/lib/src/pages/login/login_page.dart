@@ -53,7 +53,15 @@ class _LoginFormState extends State<LoginForm> {
       child: Card(
         child: Container(
           color: Colors.white,
-          child: TextField(),
+          child: TextField(
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                hintText: 'codemobiles@gmail.com',
+                labelText: 'Username',
+                icon: Icon(Icons.email),
+              )
+
+          ),
         ),
       ),
     );
