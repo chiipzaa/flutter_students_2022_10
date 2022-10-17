@@ -58,7 +58,7 @@ class _LoginFormState extends State<LoginForm> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              children:  [
+              children: [
                 // Username
                 const TextField(
                     decoration: InputDecoration(
@@ -77,7 +77,9 @@ class _LoginFormState extends State<LoginForm> {
                       icon: Icon(Icons.password),
                     )),
                 // Login button
-                ElevatedButton(onPressed: () {}, child: Text("Login"))
+                ElevatedButton(onPressed: () {}, child: Text("Login")),
+                ElevatedButton(onPressed: () {}, child: Text("Register")),
+                ElevatedButton(onPressed: () {}, child: Text("Clear")),
               ],
             ),
           ),
