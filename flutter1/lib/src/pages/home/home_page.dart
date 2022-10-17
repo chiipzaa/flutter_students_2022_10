@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,9 +24,21 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("CodeMobiles"),
       ),
+      drawer: CustomDrawer(),
       body: Center(
         child: Text("Home"),
       ),
+    );
+  }
+}
+
+class CustomDrawer extends StatelessWidget {
+  const CustomDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text("Menu"),
     );
   }
 }

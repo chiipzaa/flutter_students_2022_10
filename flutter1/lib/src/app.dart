@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/home/home_page.dart';
 import 'package:flutter1/src/pages/login/login_page.dart';
 
@@ -12,6 +13,7 @@ class CMApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: AppRoute.all,
       home: LoginPage(),
     );
   }

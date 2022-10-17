@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/constants/asset.dart';
+import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/login/widgets/cmtext.dart';
 
 class LoginPage extends StatefulWidget {
@@ -97,14 +98,27 @@ class _LoginFormState extends State<LoginForm> {
 
                 const SizedBox(height: 32),
                 // Login button
-                ElevatedButton(onPressed: () => print("Clicked: Login ${_usernameController.text}"), child: Text("Login")),
-                OutlinedButton(onPressed: () => print("Clicked: Register"), child: Text("Register")),
-                TextButton(onPressed: () {}, child: Text("Clear")),
+                ElevatedButton(onPressed: _handleLogin, child: Text("Login")),
+                OutlinedButton(onPressed: _handleRegister, child: Text("Register")),
+                TextButton(onPressed: _handlerClear, child: Text("Clear")),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _handleLogin() {
+    // Navigator.pushNamed(context, AppRoute.home);
+    Navigator.pushReplacementNamed(context, AppRoute.home);
+  }
+
+  void _handleRegister() {
+  }
+
+  void _handlerClear() {
+    _usernameController.text = "";
+    _passwordController.text = "";
   }
 }
