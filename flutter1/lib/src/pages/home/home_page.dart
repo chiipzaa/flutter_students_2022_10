@@ -62,6 +62,8 @@ class CustomDrawer extends StatelessWidget {
             title: Text("Map"),
             leading: Icon(Icons.map_outlined, color: Colors.blue),
           ),
+           const Spacer(),
+          _buildLogoutButton()
         ],
       ),
     );
