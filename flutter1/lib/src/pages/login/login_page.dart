@@ -44,9 +44,18 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Text("1234"),
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 24.0,
+        right: 24,
+        top: 32,
+      ),
+      child: Card(
+        child: Container(
+          color: Colors.white,
+          child: TextField(),
+        ),
+      ),
     );
   }
 }
