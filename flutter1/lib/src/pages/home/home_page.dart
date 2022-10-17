@@ -37,8 +37,26 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Menu"),
+    return Drawer(
+      child: Column(children: [
+        _buildProfile()
+      ],),
     );
   }
+
+
+  UserAccountsDrawerHeader _buildProfile() => UserAccountsDrawerHeader(
+    currentAccountPicture: Container(
+      child: const CircleAvatar(
+        backgroundImage: NetworkImage('https://cdn-images-1.medium.com/max/280/1*X5PBTDQQ2Csztg3a6wofIQ@2x.png'),
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        shape: BoxShape.circle,
+      ),
+    ),
+    accountName: Text('CMDev'),
+    accountEmail: Text('support@codemobiles.com'),
+  );
+
 }
