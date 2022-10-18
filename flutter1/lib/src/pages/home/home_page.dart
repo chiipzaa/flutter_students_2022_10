@@ -81,9 +81,9 @@ class _HomePageState extends State<HomePage> {
         childAspectRatio: 0.9, // set height ratio -  (itemWidth / itemHeight)
       ),
       itemBuilder: (context, index) {
-        return Text("1234");
+        return Center(child: Text("1234"));
       },
-      itemCount: 30,
+      itemCount: 40,
     );
   }
 }
