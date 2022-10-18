@@ -24,34 +24,38 @@ class _HomePageState extends State<HomePage> {
         title: Text("CodeMobiles"),
       ),
       drawer: CustomDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  child: Text("Add"),
-                  onPressed: () {
-                    context.read<HomeBloc>().add(HomeEvent_Add());
-                  },
-                ),
-                TextButton(
-                  child: Text("Delete"),
-                  onPressed: () {
-                    context.read<HomeBloc>().add(HomeEvent_Delete());
-                  },
-                )
-              ],
-            ),
-            BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                return Text("Counter ${state.count}");
-              },
-            )
-          ],
-        ),
+      body: _showBlocDemo(),
+    );
+  }
+
+  _showBlocDemo() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                child: Text("Add"),
+                onPressed: () {
+                  context.read<HomeBloc>().add(HomeEvent_Add());
+                },
+              ),
+              TextButton(
+                child: Text("Delete"),
+                onPressed: () {
+                  context.read<HomeBloc>().add(HomeEvent_Delete());
+                },
+              )
+            ],
+          ),
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              return Text("Counter ${state.count}");
+            },
+          )
+        ],
       ),
     );
   }
