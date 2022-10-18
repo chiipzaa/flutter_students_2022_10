@@ -37,7 +37,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: CustomDrawer(),
-      body: _showGridView(),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return state.isGrid ? _showGridView() : _showListView();
+        },
+      ),
     );
   }
 
