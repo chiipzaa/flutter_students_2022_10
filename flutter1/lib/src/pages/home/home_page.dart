@@ -47,6 +47,10 @@ class _HomePageState extends State<HomePage> {
       drawer: CustomDrawer(),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
+          if (state.status != FetchStatus.success){
+            return Center(child: Text("Loading"),);
+          }
+
           return state.isGrid ? _showGridView() : _showListView();
         },
       ),
