@@ -10,3 +10,8 @@ class LoginEvent_Register extends LoginEvent {
   final User payload;
   LoginEvent_Register(this.payload);
 }
+
+class LoginEvent_Login extends LoginEvent {
+  final User payload;
+  LoginEvent_Login(this.payload);
+}
