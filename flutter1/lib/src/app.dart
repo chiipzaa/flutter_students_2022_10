@@ -5,6 +5,12 @@ import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/home/home_page.dart';
 import 'package:flutter1/src/pages/login/login_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+
+
+final formatCurrency = NumberFormat('#,###.00');
+final formatNumber = NumberFormat('#,###');
+final navigatorState = GlobalKey<NavigatorState>();
 
 class CMApp extends StatelessWidget {
   const CMApp({super.key});
@@ -18,6 +24,7 @@ class CMApp extends StatelessWidget {
       providers: [homeBloc,loginBloc],
       child: MaterialApp(
         title: 'Flutter Demo',
+        navigatorKey: navigatorState,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
