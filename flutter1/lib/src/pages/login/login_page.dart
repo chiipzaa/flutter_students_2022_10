@@ -99,6 +99,18 @@ class _LoginFormState extends State<LoginForm> {
                       icon: Icon(Icons.password),
                     )),
 
+                BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    if (state.status == LoginStatus.failed) {
+                      return const Text(
+                        "Error: Invalid account",
+                        style: TextStyle(color: Colors.red),
+                      );
+                    } else {
+                      return SizedBox();
+                    }
+                  },
+                ),
                 const SizedBox(height: 32),
                 // Login button
                 ElevatedButton(onPressed: _handleLogin, child: Text("Login")),
@@ -113,8 +125,6 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _handleLogin() {
-    // Navigator.pushNamed(context, AppRoute.home);
-    // Navigator.pushReplacementNamed(context, AppRoute.home);
     final username = _usernameController.text;
     final password = _passwordController.text;
     context.read<LoginBloc>().add(LoginEvent_Login(User(username, password)));
