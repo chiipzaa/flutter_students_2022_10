@@ -8,8 +8,14 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState()) {
-    on<HomeEvent>((event, emit) {
-      // TODO: implement event handler
+    // Add
+    on<HomeEvent_Add>((event, emit) {
+
+    });
+
+    // Delete
+    on<HomeEvent_Delete>((event, emit) {
+
     });
   }
 }
