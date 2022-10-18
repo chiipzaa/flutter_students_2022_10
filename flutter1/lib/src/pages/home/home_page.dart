@@ -62,9 +62,12 @@ class _HomePageState extends State<HomePage> {
 
   _showListView() {
     return ListView.builder(
-      itemCount: 3,
+      itemCount: 30,
       itemBuilder: (context, index) {
-        return Text("1234");
+        return Text(
+          "1234",
+          style: TextStyle(fontSize: 20),
+        );
       },
     );
   }
