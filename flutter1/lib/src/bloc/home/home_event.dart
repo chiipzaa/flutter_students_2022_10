@@ -14,3 +14,8 @@ class HomeEvent_Delete extends HomeEvent {}
 
 // Delete Event
 class HomeEvent_ToggleGridAndListView extends HomeEvent {}
+
+
+// Fetch Product Event
+class HomeEvent_Fetch extends HomeEvent{
+}
