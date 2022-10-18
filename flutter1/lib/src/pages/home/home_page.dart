@@ -75,13 +75,18 @@ class _HomePageState extends State<HomePage> {
   _showGridView() {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
+        crossAxisCount: 3,
+        crossAxisSpacing: 4,
+        mainAxisSpacing: 4,
         childAspectRatio: 0.9, // set height ratio -  (itemWidth / itemHeight)
       ),
       itemBuilder: (context, index) {
-        return Center(child: Text("1234"));
+        return Container(
+          color: Colors.red,
+          child: Center(
+            child: Text("1234"),
+          ),
+        );
       },
       itemCount: 40,
     );
