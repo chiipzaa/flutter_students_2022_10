@@ -11,13 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  int _count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +21,19 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: CustomDrawer(),
       body: Center(
-        child: TextButton(
-          child: Text("ClickMe"),
-          onPressed: () {},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              child: Text("ClickMe"),
+              onPressed: () {
+                setState(() {
+                  _count = _count + 1;
+                });
+              },
+            ),
+            Text("Counter $_count")
+          ],
         ),
       ),
     );
