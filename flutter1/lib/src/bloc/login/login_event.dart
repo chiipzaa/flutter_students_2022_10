@@ -16,6 +16,5 @@ class LoginEvent_Login extends LoginEvent {
   LoginEvent_Login(this.payload);
 }
 
-
 class LoginEvent_Logout extends LoginEvent {
 }

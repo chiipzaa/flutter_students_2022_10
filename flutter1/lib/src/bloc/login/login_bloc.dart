@@ -11,6 +11,7 @@ import '../../constants/app_setting.dart';
 import '../../models/User.dart';
 
 part 'login_event.dart';
+
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -18,6 +19,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     // Register
     on<LoginEvent_Register>((event, emit) {
       print("Register: " + event.payload.username + "," + event.payload.password);
+    });
+
+    on<LoginEvent_Logout>((event, emit) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.login);
     });
 
     // Login
