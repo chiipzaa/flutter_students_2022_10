@@ -27,7 +27,10 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: CustomDrawer(),
       body: Center(
-        child: Text("Home"),
+        child: TextButton(
+          child: Text("ClickMe"),
+          onPressed: () {},
+        ),
       ),
     );
   }
@@ -62,7 +65,7 @@ class CustomDrawer extends StatelessWidget {
             title: Text("Map"),
             leading: Icon(Icons.map_outlined, color: Colors.blue),
           ),
-           const Spacer(),
+          const Spacer(),
           _buildLogoutButton()
         ],
       ),
@@ -70,12 +73,10 @@ class CustomDrawer extends StatelessWidget {
   }
 
   Builder _buildLogoutButton() => Builder(
-    builder: (context) => SafeArea(
-      child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
-    ),
-  );
-
-
+        builder: (context) => SafeArea(
+          child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
+        ),
+      );
 
   UserAccountsDrawerHeader _buildProfile() => UserAccountsDrawerHeader(
         currentAccountPicture: Container(
