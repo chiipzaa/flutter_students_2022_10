@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /// id : 17
 /// name : "NodeMCU Development Kit V2 แถมสาย USB (Node MCU)"
 /// image : "product_22.jpg"
@@ -6,10 +8,12 @@
 /// created_at : "2021-08-13T06:06:02.092Z"
 /// updated_at : "2021-08-13T06:06:02.092Z"
 
+List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
+
 class Product {
   Product({
       num? id, 
-      String? name, 
+      String? name,
       String? image, 
       num? stock, 
       num? price, 

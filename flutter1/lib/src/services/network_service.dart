@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter1/src/models/Product.dart';
 
 class NetworkService {
   NetworkService._internal();
@@ -7,14 +10,10 @@ class NetworkService {
   static final Dio _dio = Dio();
 
   getProducts() async {
-    // final response = await _dio.get(NetworkAPI.product);
-    // if (response.statusCode == 200) {
-    //   return productFromJson(jsonEncode(response.data));
-    // }
-
     final response = await _dio.get("https://cmcrud.herokuapp.com/products");
     if (response.statusCode == 200){
-
+        final result = productFromJson(jsonEncode(response.data));
+        return result;
     }
   }
 
