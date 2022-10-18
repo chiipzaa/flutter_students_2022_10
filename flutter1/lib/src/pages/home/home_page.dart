@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     // final _count = context.read<HomeBloc>().state.count;
@@ -28,11 +27,22 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextButton(
-              child: Text("ClickMe"),
-              onPressed: () {
-                context.read<HomeBloc>().add(HomeEvent_Add());
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  child: Text("Add"),
+                  onPressed: () {
+                    context.read<HomeBloc>().add(HomeEvent_Add());
+                  },
+                ),
+                TextButton(
+                  child: Text("Delete"),
+                  onPressed: () {
+                    context.read<HomeBloc>().add(HomeEvent_Delete());
+                  },
+                )
+              ],
             ),
             BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
@@ -82,16 +92,13 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  Builder _buildLogoutButton() =>
-      Builder(
-        builder: (context) =>
-            SafeArea(
-              child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
-            ),
+  Builder _buildLogoutButton() => Builder(
+        builder: (context) => SafeArea(
+          child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
+        ),
       );
 
-  UserAccountsDrawerHeader _buildProfile() =>
-      UserAccountsDrawerHeader(
+  UserAccountsDrawerHeader _buildProfile() => UserAccountsDrawerHeader(
         currentAccountPicture: Container(
           child: const CircleAvatar(
             backgroundImage: NetworkImage('https://cdn-images-1.medium.com/max/280/1*X5PBTDQQ2Csztg3a6wofIQ@2x.png'),
