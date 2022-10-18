@@ -106,9 +106,8 @@ class _LoginFormState extends State<LoginForm> {
                         "Error: Invalid account",
                         style: TextStyle(color: Colors.red),
                       );
-                    } else {
-                      return SizedBox();
                     }
+                    return SizedBox();
                   },
                 ),
                 const SizedBox(height: 32),
