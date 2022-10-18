@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/bloc/login/login_bloc.dart';
 import 'package:flutter1/src/constants/asset.dart';
+import 'package:flutter1/src/models/User.dart';
 import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/login/widgets/cmtext.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -111,7 +114,10 @@ class _LoginFormState extends State<LoginForm> {
 
   void _handleLogin() {
     // Navigator.pushNamed(context, AppRoute.home);
-    Navigator.pushReplacementNamed(context, AppRoute.home);
+    // Navigator.pushReplacementNamed(context, AppRoute.home);
+    final username = _usernameController.text;
+    final password = _passwordController.text;
+    context.read<LoginBloc>().add(LoginEvent_Login(User(username, password)));
   }
 
   void _handleRegister() {
