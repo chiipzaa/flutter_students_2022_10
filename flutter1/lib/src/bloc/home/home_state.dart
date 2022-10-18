@@ -1,9 +1,20 @@
 part of 'home_bloc.dart';
 
+enum FetchStatus { fetching, success, failed, init }
+
 class HomeState extends Equatable {
-  HomeState({this.count = 0, this.isGrid = true}) {}
+  final List<Product> products;
+  final FetchStatus status;
   final int count;
   final bool isGrid;
+
+  HomeState({
+    this.count = 0,
+    this.isGrid = true,
+    this.products = const [],
+    this.status = FetchStatus.init
+  }) {}
+
 
   HomeState copyWith({int? count, bool? isGrid}) {
     return HomeState(

@@ -17,12 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   @override
-  void initState() {
-    NetworkService().getProducts();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     // final _count = context.read<HomeBloc>().state.count;
     // final _count = context.watch<HomeBloc>().state.count;
