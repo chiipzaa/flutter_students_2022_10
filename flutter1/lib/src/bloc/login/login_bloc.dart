@@ -17,7 +17,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     // Login
     on<LoginEvent_Login>((event, emit) {
-      print("Login: " + event.payload.username + "," + event.payload.password);
+      final String username = event.payload.username;
+      final String password = event.payload.password;
+
+      if (username == 'admin' && password == '1234') {
+        // method 2
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString(AppSetting.token, 'TExkgk0494oksrkf');
+        await prefs.setString(AppSetting.username, username);
+        Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.home_v2);
+        // Emit
+        emit(state.copyWith(status: LoginStatus.success));
+      } else {
+        print("Login failed");
+      }
+
+
     });
   }
 }
