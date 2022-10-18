@@ -6,7 +6,7 @@ import 'package:flutter1/src/pages/home/home_page.dart';
 import 'package:flutter1/src/pages/login/login_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 final formatCurrency = NumberFormat('#,###.00');
 final formatNumber = NumberFormat('#,###');
@@ -19,9 +19,9 @@ class CMApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
     final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc());
-    
+
     return MultiBlocProvider(
-      providers: [homeBloc,loginBloc],
+      providers: [homeBloc, loginBloc],
       child: MaterialApp(
         title: 'Flutter Demo',
         navigatorKey: navigatorState,
@@ -35,6 +35,11 @@ class CMApp extends StatelessWidget {
   }
 
   _loadInitialPage() {
-    return LoginPage();
+    return FutureBuilder<SharedPreferences>(
+      future: SharedPreferences.getInstance(),
+      builder: (context, snapshot) {
+        return LoginPage();
+      },
+    );
   }
 }
