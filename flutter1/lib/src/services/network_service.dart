@@ -16,5 +16,4 @@ class NetworkService {
         return result;
     }
   }
-
 }
