@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         title: Text("CodeMobiles"),
       ),
       drawer: CustomDrawer(),
-      body: _showBlocDemo(),
+      body: _showListView(),
     );
   }
 
@@ -57,6 +57,15 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+    );
+  }
+
+  _showListView() {
+    return ListView.builder(
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        return Text("1234");
+      },
     );
   }
 }
