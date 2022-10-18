@@ -29,8 +29,12 @@ class CMApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: AppRoute.all,
-        home: LoginPage(),
+        home: _loadInitialPage(),
       ),
     );
+  }
+
+  _loadInitialPage() {
+    return LoginPage();
   }
 }
