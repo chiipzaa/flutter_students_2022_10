@@ -17,5 +17,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeEvent_Delete>((event, emit) {
       emit(state.copyWith(count: state.count-1));
     });
+
+    // Toggle Grid or List
+    on<HomeEvent_ToggleGridAndListView>((event, emit) {
+      emit(state.copyWith(isGrid: !state.isGrid));
+    });
   }
 }

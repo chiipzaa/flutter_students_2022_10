@@ -11,3 +11,6 @@ class HomeEvent_Add extends HomeEvent {}
 
 // Delete Event
 class HomeEvent_Delete extends HomeEvent {}
+
+// Delete Event
+class HomeEvent_ToggleGridAndListView extends HomeEvent {}
