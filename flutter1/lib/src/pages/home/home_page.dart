@@ -22,6 +22,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("CodeMobiles"),
+        actions: [
+          TextButton(
+            onPressed: () => context.read<HomeBloc>().add(HomeEvent_ToggleGridAndListView()),
+            child: Icon(
+              Icons.grid_3x3,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       drawer: CustomDrawer(),
       body: _showGridView(),
