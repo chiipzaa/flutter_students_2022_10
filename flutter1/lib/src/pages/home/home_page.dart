@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/bloc/home/home_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,10 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _count = 0;
 
   @override
   Widget build(BuildContext context) {
+    final _count = context.read<HomeBloc>().state.count;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("CodeMobiles"),
@@ -27,9 +30,7 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               child: Text("ClickMe"),
               onPressed: () {
-                setState(() {
-                  _count = _count + 1;
-                });
+
               },
             ),
             Text("Counter $_count")
