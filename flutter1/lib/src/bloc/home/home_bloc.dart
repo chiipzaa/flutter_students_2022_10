@@ -10,12 +10,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState()) {
     // Add
     on<HomeEvent_Add>((event, emit) {
-
+        emit(state.copyWith(count: state.count+1));
     });
 
     // Delete
     on<HomeEvent_Delete>((event, emit) {
-
+      emit(state.copyWith(count: state.count-1));
     });
   }
 }
