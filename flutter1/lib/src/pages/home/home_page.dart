@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         title: Text("CodeMobiles"),
       ),
       drawer: CustomDrawer(),
-      body: _showListView(),
+      body: _showGridView(),
     );
   }
 
@@ -69,6 +69,21 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontSize: 20),
         );
       },
+    );
+  }
+
+  _showGridView() {
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 1,
+        childAspectRatio: 0.9, // set height ratio -  (itemWidth / itemHeight)
+      ),
+      itemBuilder: (context, index) {
+        return Text("1234");
+      },
+      itemCount: 30,
     );
   }
 }
