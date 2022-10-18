@@ -121,6 +121,9 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _handleRegister() {
+    final username = _usernameController.text;
+    final password = _passwordController.text;
+    context.read<LoginBloc>().add(LoginEvent_Register(User(username, password)));
   }
 
   void _handlerClear() {

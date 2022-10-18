@@ -17,7 +17,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     // Login
     on<LoginEvent_Login>((event, emit) {
-      print("Register: " + event.payload.username + "," + event.payload.password);
+      print("Login: " + event.payload.username + "," + event.payload.password);
     });
   }
 }
