@@ -12,17 +12,23 @@ class HomeState extends Equatable {
     this.count = 0,
     this.isGrid = true,
     this.products = const [],
-    this.status = FetchStatus.init
+    this.status = FetchStatus.init,
   }) {}
 
-
-  HomeState copyWith({int? count, bool? isGrid}) {
+  HomeState copyWith({int? count, bool? isGrid, List<Product>? product, FetchStatus? status}) {
     return HomeState(
       count: count ?? this.count,
       isGrid: isGrid ?? this.isGrid,
+      products: products ?? this.products,
+      status: status ?? this.status,
     );
   }
 
   @override
-  List<Object> get props => [count, isGrid];
+  List<Object> get props => [
+        count,
+        isGrid,
+        products,
+        status,
+      ];
 }
