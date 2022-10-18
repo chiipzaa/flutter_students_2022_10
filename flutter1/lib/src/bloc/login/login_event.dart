@@ -7,5 +7,6 @@ abstract class LoginEvent extends Equatable {
 }
 
 class LoginEvent_Register extends LoginEvent {
-
+  final User payload;
+  LoginEvent_Register(this.payload);
 }
