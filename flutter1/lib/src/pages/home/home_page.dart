@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-     NetworkService().getProducts();
+    NetworkService().getProducts();
     super.initState();
   }
 
