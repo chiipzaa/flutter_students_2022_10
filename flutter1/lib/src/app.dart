@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
+import 'package:flutter1/src/constants/app_setting.dart';
 import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/home/home_page.dart';
 import 'package:flutter1/src/pages/login/login_page.dart';
@@ -38,7 +39,11 @@ class CMApp extends StatelessWidget {
     return FutureBuilder<SharedPreferences>(
       future: SharedPreferences.getInstance(),
       builder: (context, snapshot) {
-        return LoginPage();
+        if (!snapshot.hasData){
+          return Container(color: Colors.white,);
+        }
+        final token = snapshot.data!.getString(AppSetting.token) ?? "";
+        return token.isNotEmpty ? const HomePage(title: "CodeMobiles") : const LoginPage();
       },
     );
   }
