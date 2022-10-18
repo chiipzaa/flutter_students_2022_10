@@ -16,7 +16,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final _count = context.read<HomeBloc>().state.count;
+    // final _count = context.read<HomeBloc>().state.count;
+    // final _count = context.watch<HomeBloc>().state.count;
 
     return Scaffold(
       appBar: AppBar(
@@ -30,10 +31,14 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               child: Text("ClickMe"),
               onPressed: () {
-
+                context.read<HomeBloc>().add(HomeEvent_Add());
               },
             ),
-            Text("Counter $_count")
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                return Text("Counter ${state.count}");
+              },
+            )
           ],
         ),
       ),
@@ -77,13 +82,16 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  Builder _buildLogoutButton() => Builder(
-        builder: (context) => SafeArea(
-          child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
-        ),
+  Builder _buildLogoutButton() =>
+      Builder(
+        builder: (context) =>
+            SafeArea(
+              child: ListTile(leading: FaIcon(FontAwesomeIcons.signOutAlt), title: Text('Log out'), onTap: () {}),
+            ),
       );
 
-  UserAccountsDrawerHeader _buildProfile() => UserAccountsDrawerHeader(
+  UserAccountsDrawerHeader _buildProfile() =>
+      UserAccountsDrawerHeader(
         currentAccountPicture: Container(
           child: const CircleAvatar(
             backgroundImage: NetworkImage('https://cdn-images-1.medium.com/max/280/1*X5PBTDQQ2Csztg3a6wofIQ@2x.png'),
