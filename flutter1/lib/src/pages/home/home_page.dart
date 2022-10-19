@@ -27,6 +27,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  void _navigatorManagementPage([Product? product]) {
+    Navigator.pushNamed(context, AppRoute.management, arguments: product)
+        .then(
+          (value) => setState(() {}),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // final _count = context.read<HomeBloc>().state.count;
@@ -50,6 +57,10 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: CustomDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _navigatorManagementPage(),
+        child: const Icon(Icons.add),
+      ),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.status != FetchStatus.success) {
