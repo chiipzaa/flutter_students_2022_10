@@ -33,6 +33,57 @@ class NetworkService {
     );
 
   getProducts() async {
+    final tmp = Dio();
+    tmp.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          options.baseUrl = NetworkAPI.baseURL;
+          return handler.next(options);
+        },
+        onResponse: (response, handler) async {
+          // await Future.delayed(Duration(seconds: 10));
+          return handler.next(response);
+        },
+        onError: (DioError e, handler) {
+          switch (e.response?.statusCode) {
+            case 301:
+              break;
+            case 401:
+              break;
+            default:
+          }
+          return handler.next(e);
+        },
+      ),
+    );
+    final finalTmp = tmp;
+
+    final tmpV2 = Dio()
+    ..interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          options.baseUrl = NetworkAPI.baseURL;
+          return handler.next(options);
+        },
+        onResponse: (response, handler) async {
+          // await Future.delayed(Duration(seconds: 10));
+          return handler.next(response);
+        },
+        onError: (DioError e, handler) {
+          switch (e.response?.statusCode) {
+            case 301:
+              break;
+            case 401:
+              break;
+            default:
+          }
+          return handler.next(e);
+        },
+      ),
+    );
+
+
+
     final response = await _dio.get(NetworkAPI.product);
     if (response.statusCode == 200){
         final result = productFromJson(jsonEncode(response.data));
