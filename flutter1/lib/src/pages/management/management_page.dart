@@ -10,6 +10,11 @@ class ManagementPage extends StatefulWidget {
 class _ManagementPageState extends State<ManagementPage> {
   @override
   Widget build(BuildContext context) {
-    return Text("Management Page");
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Managment"),
+      ),
+      body: Center(child: Text("1234")),
+    );
   }
 }

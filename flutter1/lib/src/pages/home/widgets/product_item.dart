@@ -12,14 +12,14 @@ import '../../../models/Product.dart';
 class ProductItem extends StatelessWidget {
   const ProductItem({
     required this.product,
-    required this.onTap,
     this.isGrid,
+    this.onTap,
     Key? key,
   }) : super(key: key);
 
   final Product product;
-  final VoidCallback? onTap;
   final bool? isGrid;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

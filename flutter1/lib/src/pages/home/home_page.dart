@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
 import 'package:flutter1/src/models/Product.dart';
+import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/home/widgets/product_item.dart';
 import 'package:flutter1/src/services/network_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,7 +103,10 @@ class _HomePageState extends State<HomePage> {
         final product = products[index];
         return SizedBox(
           height: 350,
-          child: ProductItem(product: product, onTap: () {}),
+          child: ProductItem(
+            product: product,
+            onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+          ),
         );
       },
     );
@@ -121,7 +125,7 @@ class _HomePageState extends State<HomePage> {
           child: ProductItem(
             isGrid: true,
             product: products[index],
-            onTap: ()  {},
+            onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
           ),
         );
       },
