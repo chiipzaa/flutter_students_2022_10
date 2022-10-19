@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,10 +11,10 @@ class ProductImage extends StatefulWidget {
   final String? image;
 
   const ProductImage(
-      this.callBackSetImage, {
-        required this.image,
-        Key? key,
-      }) : super(key: key);
+    this.callBackSetImage, {
+    required this.image,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ProductImageState createState() => _ProductImageState();
@@ -52,12 +51,12 @@ class _ProductImageState extends State<ProductImage> {
     }
 
     final container = (Widget child) => Container(
-      color: Colors.grey[100],
-      margin: EdgeInsets.only(top: 4),
-      alignment: Alignment.center,
-      height: 250,
-      child: child,
-    );
+          color: Colors.grey[100],
+          margin: EdgeInsets.only(top: 4),
+          alignment: Alignment.center,
+          height: 250,
+          child: child,
+        );
 
     if (_imageFile != null) {
       return Stack(
@@ -86,18 +85,16 @@ class _ProductImageState extends State<ProductImage> {
   }
 
   IconButton _buildPickerImage() => IconButton(
-    icon: FaIcon(FontAwesomeIcons.image),
-    onPressed: _modalPickerImage,
-  );
-
-
+        icon: FaIcon(FontAwesomeIcons.image),
+        onPressed: _modalPickerImage,
+      );
 
   void _modalPickerImage() {
     final buildListTile = (
-        IconData icon,
-        String title,
-        ImageSource source,
-        ) =>
+      IconData icon,
+      String title,
+      ImageSource source,
+    ) =>
         ListTile(
           leading: Icon(icon),
           title: Text(title),
@@ -131,27 +128,23 @@ class _ProductImageState extends State<ProductImage> {
     );
   }
 
+  Future<void> _pickImage(ImageSource source) async {
 
-
-  void _pickImage(ImageSource source) {
-    _picker
-        .pickImage(
+    final file = await _picker.pickImage(
       source: source,
       imageQuality: 70,
       maxHeight: 500,
       maxWidth: 500,
-    )
-        .then((file) {
-      if (file != null) {
-        _cropImage(file.path);
-      }
-    }).catchError((error) {
-      //todo
-    });
+    );
+
+    if (file != null) {
+      _cropImage(file.path);
+    }
   }
 
   void _cropImage(String filePath) {
-    ImageCropper().cropImage(
+    ImageCropper()
+        .cropImage(
       sourcePath: filePath,
       aspectRatioPresets: [
         CropAspectRatioPreset.square,
@@ -174,7 +167,8 @@ class _ProductImageState extends State<ProductImage> {
       maxWidth: 500,
       maxHeight: 500,
       //circleShape: true
-    ).then((file) {
+    )
+        .then((file) {
       if (file != null) {
         setState(() {
           _imageFile = file as File?;
@@ -185,20 +179,19 @@ class _ProductImageState extends State<ProductImage> {
   }
 
   Positioned _buildDeleteImageButton() => Positioned(
-    right: -10,
-    top: 10,
-    child: RawMaterialButton(
-      onPressed: () => _deleteImage(),
-      fillColor: Colors.white,
-      child: Icon(
-        Icons.clear,
-      ),
-      shape: CircleBorder(
-        side: BorderSide(
-            width: 1, color: Colors.grey, style: BorderStyle.solid),
-      ),
-    ),
-  );
+        right: -10,
+        top: 10,
+        child: RawMaterialButton(
+          onPressed: () => _deleteImage(),
+          fillColor: Colors.white,
+          child: Icon(
+            Icons.clear,
+          ),
+          shape: CircleBorder(
+            side: BorderSide(width: 1, color: Colors.grey, style: BorderStyle.solid),
+          ),
+        ),
+      );
 
   void _deleteImage() {
     setState(() {
