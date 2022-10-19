@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
 import 'package:flutter1/src/models/Product.dart';
+import 'package:flutter1/src/pages/home/widgets/product_item.dart';
 import 'package:flutter1/src/services/network_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -98,20 +99,10 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(top: 12.0),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 200,
-                child: Image.network(NetworkAPI.imageURL + "/" + products[index].image!),
-              ),
-              Text(
-                products[index].name!,
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
-          ),
+        final product = products[index];
+        return SizedBox(
+          height: 350,
+          child: ProductItem(product: product, onTap: () {}),
         );
       },
     );

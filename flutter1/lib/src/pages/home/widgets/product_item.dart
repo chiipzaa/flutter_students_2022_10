@@ -4,9 +4,10 @@ import 'dart:io';
 
 import 'package:flutter1/src/app.dart';
 import 'package:flutter1/src/constants/network_api.dart';
-import 'package:flutter1/src/models/product.dart';
 import 'package:flutter1/src/widgets/image_not_found.dart';
 import 'package:flutter/material.dart';
+import '../../../models/Product.dart';
+
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
