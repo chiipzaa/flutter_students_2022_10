@@ -38,12 +38,32 @@ class _ManagementPageState extends State<ManagementPage> {
           key: _form,
           child: Column(
             children: [
+              // name
               TextFormField(
                 initialValue: _product.name,
                 decoration: InputDecoration(labelText: "Name"),
                 onSaved: (value){
+                  if (value != null) {
                     _product.name = value;
+                  }
               },),
+              // price
+              TextFormField(
+                initialValue: _product.price.toString(),
+                decoration: InputDecoration(labelText: "Price"),
+                onSaved: (value){
+                  if (value != null) {
+                    _product.price = int.parse(value);
+                  }
+                },),
+              TextFormField(
+                initialValue: _product.stock.toString(),
+                decoration: InputDecoration(labelText: "Stock"),
+                onSaved: (value){
+                  if (value != null) {
+                    _product.stock = int.parse(value);
+                  }
+                },)
 
             ],
           ),
