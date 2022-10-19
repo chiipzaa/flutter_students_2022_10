@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                 child: SizedBox(
                   child: ProductItem(
                     product: products[index],
-                    onTap: () => Navigator.pushNamed(context, AppRoute.management),
+                    onTap: () => _navigatorManagementPage(products[index]),
                   ),
                   height: 350,
                 ),
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                 child: ProductItem(
                   isGrid: true,
                   product: products[index],
-                  onTap: () => Navigator.pushNamed(context, AppRoute.management),
+                  onTap: () => _navigatorManagementPage(products[index]),
                 ),
               );
             },
