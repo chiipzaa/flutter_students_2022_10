@@ -34,11 +34,16 @@ class _ManagementPageState extends State<ManagementPage> {
           },
         ),
       ]),
-      body: ProductForm(
-        _product,
-        callBackSetImage: () {},
-        formKey: _form,
-        deleteProduct: () {},
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: ProductForm(
+            _product,
+            callBackSetImage: () {},
+            formKey: _form,
+            deleteProduct: () {},
+          ),
+        ),
       ),
     );
   }
