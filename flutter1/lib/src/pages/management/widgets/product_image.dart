@@ -171,7 +171,7 @@ class _ProductImageState extends State<ProductImage> {
         .then((file) {
       if (file != null) {
         setState(() {
-          _imageFile = file as File?;
+          _imageFile = File(file.path);
           widget.callBackSetImage(_imageFile);
         });
       }

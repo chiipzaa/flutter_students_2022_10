@@ -39,7 +39,9 @@ class _ManagementPageState extends State<ManagementPage> {
           padding: const EdgeInsets.all(32.0),
           child: ProductForm(
             _product,
-            callBackSetImage: () {},
+            callBackSetImage: (file) {
+              _imageFile = file;
+            },
             formKey: _form,
             deleteProduct: () {},
           ),
