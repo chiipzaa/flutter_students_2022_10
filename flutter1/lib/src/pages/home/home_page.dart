@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
+import 'package:flutter1/src/models/Product.dart';
 import 'package:flutter1/src/services/network_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,7 +52,8 @@ class _HomePageState extends State<HomePage> {
             return Center(child: Text("Loading"),);
           }
 
-          return state.isGrid ? _showGridView() : _showListView();
+          final products = state.products;
+          return state.isGrid ? _showGridView(products) : _showListView(products);
         },
       ),
     );
@@ -89,7 +91,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _showListView() {
+  _showListView(List<Product> products) {
     return ListView.builder(
       itemCount: 30,
       itemBuilder: (context, index) {
@@ -101,7 +103,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _showGridView() {
+  _showGridView(List<Product> products) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
@@ -113,11 +115,11 @@ class _HomePageState extends State<HomePage> {
         return Container(
           color: Colors.red,
           child: Center(
-            child: Text("1234"),
+            child: Text(products[index].name!, style: TextStyle(color: Colors.white),),
           ),
         );
       },
-      itemCount: 40,
+      itemCount: products.length,
     );
   }
 }
