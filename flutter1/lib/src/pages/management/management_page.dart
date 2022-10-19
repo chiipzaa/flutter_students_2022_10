@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/models/Product.dart';
+import 'package:flutter1/src/pages/management/widgets/product_form.dart';
 
 class ManagementPage extends StatefulWidget {
   const ManagementPage({Key? key}) : super(key: key);
@@ -33,41 +34,11 @@ class _ManagementPageState extends State<ManagementPage> {
           },
         ),
       ]),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
-          key: _form,
-          child: Column(
-            children: [
-              // name
-              TextFormField(
-                initialValue: _product.name,
-                decoration: InputDecoration(labelText: "Name"),
-                onSaved: (value){
-                  if (value != null) {
-                    _product.name = value;
-                  }
-              },),
-              // price
-              TextFormField(
-                initialValue: _product.price.toString(),
-                decoration: InputDecoration(labelText: "Price"),
-                onSaved: (value){
-                  if (value != null) {
-                    _product.price = int.parse(value);
-                  }
-                },),
-              TextFormField(
-                initialValue: _product.stock.toString(),
-                decoration: InputDecoration(labelText: "Stock"),
-                onSaved: (value){
-                  if (value != null) {
-                    _product.stock = int.parse(value);
-                  }
-                },),
-            ],
-          ),
-        ),
+      body: ProductForm(
+        _product,
+        callBackSetImage: () {},
+        formKey: _form,
+        deleteProduct: () {},
       ),
     );
   }
