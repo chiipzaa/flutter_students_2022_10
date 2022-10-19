@@ -25,16 +25,24 @@ class _ManagementPageState extends State<ManagementPage> {
 
     return Scaffold(
       appBar: AppBar(title: Text("Management"), actions: [
-        IconButton(icon: Icon(Icons.upload), onPressed: () {}),
+        IconButton(
+          icon: Icon(Icons.upload),
+          onPressed: () {
+            _form.currentState?.save();
+          },
+        ),
       ]),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextField(),
-            TextField(),
-            TextField(),
-          ],
+        child: Form(
+          key: _form,
+          child: Column(
+            children: [
+              TextField(),
+              TextField(),
+              TextField(),
+            ],
+          ),
         ),
       ),
     );
