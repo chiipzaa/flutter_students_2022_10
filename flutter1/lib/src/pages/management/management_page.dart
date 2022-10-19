@@ -18,13 +18,16 @@ class _ManagementPageState extends State<ManagementPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    Object? arguments = ModalRoute.of(context)?.settings.arguments;
+    if (arguments != null && arguments is Product){
+      _product = arguments;
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: Text("Managment"),
       ),
-      body: Center(child: Text("1234")),
+      body: Center(child: Text(_product.name!)),
     );
   }
 }
