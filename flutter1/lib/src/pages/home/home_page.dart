@@ -111,19 +111,17 @@ class _HomePageState extends State<HomePage> {
   _showGridView(List<Product> products) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4,
+        crossAxisCount: 2,
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 1,
         childAspectRatio: 0.9, // set height ratio -  (itemWidth / itemHeight)
       ),
       itemBuilder: (context, index) {
         return Container(
-          color: Colors.red,
-          child: Center(
-            child: Text(
-              products[index].name!,
-              style: TextStyle(color: Colors.white),
-            ),
+          child: ProductItem(
+            isGrid: true,
+            product: products[index],
+            onTap: ()  {},
           ),
         );
       },
