@@ -1,82 +1,49 @@
-import 'dart:convert';
+// To parse this JSON data, do
+//
+//     final product = productFromJson(jsonString);
 
-/// id : 17
-/// name : "NodeMCU Development Kit V2 แถมสาย USB (Node MCU)"
-/// image : "product_22.jpg"
-/// stock : 0
-/// price : 280
-/// created_at : "2021-08-13T06:06:02.092Z"
-/// updated_at : "2021-08-13T06:06:02.092Z"
+import 'dart:convert';
 
 List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
 
+String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class Product {
   Product({
-      num? id, 
-      String? name,
-      String? image, 
-      num? stock, 
-      num? price, 
-      String? createdAt, 
-      String? updatedAt,}){
-    _id = id;
-    _name = name;
-    _image = image;
-    _stock = stock;
-    _price = price;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-}
+    this.id,
+    required this.name,
+    required this.image,
+    required this.stock,
+    required this.price,
+    this.createdAt,
+    this.updatedAt,
+  });
 
-  Product.fromJson(dynamic json) {
-    _id = json['id'];
-    _name = json['name'];
-    _image = json['image'];
-    _stock = json['stock'];
-    _price = json['price'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-  }
-  num? _id;
-  String? _name;
-  String? _image;
-  num? _stock;
-  num? _price;
-  String? _createdAt;
-  String? _updatedAt;
-Product copyWith({  num? id,
-  String? name,
-  String? image,
-  num? stock,
-  num? price,
-  String? createdAt,
-  String? updatedAt,
-}) => Product(  id: id ?? _id,
-  name: name ?? _name,
-  image: image ?? _image,
-  stock: stock ?? _stock,
-  price: price ?? _price,
-  createdAt: createdAt ?? _createdAt,
-  updatedAt: updatedAt ?? _updatedAt,
-);
-  num? get id => _id;
-  String? get name => _name;
-  String? get image => _image;
-  num? get stock => _stock;
-  num? get price => _price;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
+  int? id;
+  String name;
+  String image;
+  int stock;
+  int price;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['name'] = _name;
-    map['image'] = _image;
-    map['stock'] = _stock;
-    map['price'] = _price;
-    map['created_at'] = _createdAt;
-    map['updated_at'] = _updatedAt;
-    return map;
-  }
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+    id: json["id"],
+    name: json["name"],
+    image: json["image"],
+    stock: json["stock"],
+    price: json["price"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "image": image,
+    "stock": stock,
+    "price": price,
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+  };
 }

@@ -42,7 +42,7 @@ class _ManagementPageState extends State<ManagementPage> {
                 initialValue: _product.name,
                 decoration: InputDecoration(labelText: "Name"),
                 onSaved: (value){
-
+                    _product.name = value;
               },),
 
             ],
