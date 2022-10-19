@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
+import 'package:flutter1/src/constants/asset.dart';
 import 'package:flutter1/src/models/Product.dart';
 import 'package:flutter1/src/pages/app_routes.dart';
 import 'package:flutter1/src/pages/home/widgets/product_item.dart';
@@ -96,11 +97,40 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  _buildHeader() {
+    return Container(
+        color: Colors.black87,
+        child: Image.asset(
+          Asset.logoImage,
+          height: 100,
+          width: double.infinity,
+        ));
+  }
+
+
   _showListView(List<Product> products) {
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (context, index) {
         final product = products[index];
+        if (index == 0){
+          return Column(
+            children: [
+              _buildHeader(),
+              Padding(
+                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                child: SizedBox(
+                  child: ProductItem(
+                    product: products[index],
+                    onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+                  ),
+                  height: 350,
+                ),
+              ),
+            ],
+          );
+        }
+
         return SizedBox(
           height: 350,
           child: ProductItem(
