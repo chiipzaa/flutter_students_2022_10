@@ -53,13 +53,17 @@ class _HomePageState extends State<HomePage> {
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.status != FetchStatus.success) {
-            return Center(
+            return const Center(
               child: Text("Loading"),
             );
           }
-
           final products = state.products;
-          return state.isGrid ? _showGridView(products) : _showListView(products);
+          return RefreshIndicator(
+            child: state.isGrid ? _showGridView(products) : _showListView(products),
+            onRefresh: () async {
+              context.read<HomeBloc>().add(HomeEvent_Fetch());
+            },
+          );
         },
       ),
     );
@@ -107,13 +111,12 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-
   _showListView(List<Product> products) {
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (context, index) {
         final product = products[index];
-        if (index == 0){
+        if (index == 0) {
           return Column(
             children: [
               _buildHeader(),
@@ -122,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                 child: SizedBox(
                   child: ProductItem(
                     product: products[index],
-                    onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+                    onTap: () => Navigator.pushNamed(context, AppRoute.management),
                   ),
                   height: 350,
                 ),
@@ -135,7 +138,7 @@ class _HomePageState extends State<HomePage> {
           height: 350,
           child: ProductItem(
             product: product,
-            onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+            onTap: () => Navigator.pushNamed(context, AppRoute.management),
           ),
         );
       },
@@ -159,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                 child: ProductItem(
                   isGrid: true,
                   product: products[index],
-                  onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+                  onTap: () => Navigator.pushNamed(context, AppRoute.management),
                 ),
               );
             },
