@@ -143,23 +143,30 @@ class _HomePageState extends State<HomePage> {
   }
 
   _showGridView(List<Product> products) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 1,
-        mainAxisSpacing: 1,
-        childAspectRatio: 0.9, // set height ratio -  (itemWidth / itemHeight)
-      ),
-      itemBuilder: (context, index) {
-        return Container(
-          child: ProductItem(
-            isGrid: true,
-            product: products[index],
-            onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+    return Column(
+      children: [
+        _buildHeader(),
+        Expanded(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1,
+              childAspectRatio: 0.9, // set height ratio -  (itemWidth / itemHeight)
+            ),
+            itemBuilder: (context, index) {
+              return Container(
+                child: ProductItem(
+                  isGrid: true,
+                  product: products[index],
+                  onTap: ()=>Navigator.pushNamed(context, AppRoute.management),
+                ),
+              );
+            },
+            itemCount: products.length,
           ),
-        );
-      },
-      itemCount: products.length,
+        ),
+      ],
     );
   }
 }
