@@ -38,9 +38,13 @@ class _ManagementPageState extends State<ManagementPage> {
           key: _form,
           child: Column(
             children: [
-              TextField(),
-              TextField(),
-              TextField(),
+              TextFormField(
+                initialValue: _product.name,
+                decoration: InputDecoration(labelText: "Name"),
+                onSaved: (value){
+
+              },),
+
             ],
           ),
         ),
