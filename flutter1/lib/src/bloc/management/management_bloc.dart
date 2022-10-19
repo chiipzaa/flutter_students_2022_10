@@ -24,6 +24,9 @@ class ManagementBloc extends Bloc<ManagementEvent, ManagementState> {
       // await Future.delayed(Duration(seconds: 2));
       // emit(state.copyWith(status: SubmitStatus.success));
 
+      CustomFlushbar.showLoading(navigatorState.currentContext!);
+      return;
+
       final _product = event.product!;
       final _imageFile = event.image;
       final _editMode = event.isEditMode!;

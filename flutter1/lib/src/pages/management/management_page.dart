@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/bloc/management/management_bloc.dart';
 import 'package:flutter1/src/models/Product.dart';
 import 'package:flutter1/src/pages/management/widgets/product_form.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ManagementPage extends StatefulWidget {
   const ManagementPage({Key? key}) : super(key: key);
@@ -28,10 +30,14 @@ class _ManagementPageState extends State<ManagementPage> {
       appBar: AppBar(title: Text("Management"), actions: [
         IconButton(
           icon: Icon(Icons.upload),
-          onPressed: () {
-            _form.currentState?.save();
-            print("Debug: ${_product.name}\n ${_product.price}\n ${_product.stock}");
-          },
+          onPressed: () => context.read<ManagementBloc>().add(
+                ManagementEvent_Submit(
+                  product: _product,
+                  form: _form,
+                  isEditMode: _editMode,
+                  image: _imageFile,
+                ),
+              ),
         ),
       ]),
       body: SingleChildScrollView(
