@@ -24,6 +24,7 @@ class _ManagementPageState extends State<ManagementPage> {
     Object? arguments = ModalRoute.of(context)?.settings.arguments;
     if (arguments != null && arguments is Product) {
       _product = arguments;
+      _editMode = true;
     }
 
     return Scaffold(
