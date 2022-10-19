@@ -29,6 +29,7 @@ class _ManagementPageState extends State<ManagementPage> {
           icon: Icon(Icons.upload),
           onPressed: () {
             _form.currentState?.save();
+            print("Debug: ${_product.name}\n ${_product.price}\n ${_product.stock}");
           },
         ),
       ]),
@@ -63,8 +64,7 @@ class _ManagementPageState extends State<ManagementPage> {
                   if (value != null) {
                     _product.stock = int.parse(value);
                   }
-                },)
-
+                },),
             ],
           ),
         ),
