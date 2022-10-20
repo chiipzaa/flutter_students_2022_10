@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   CircularProgressIndicator(color: Colors.black),
                   SizedBox(height: 20,),
                   Text("Loading"),

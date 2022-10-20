@@ -130,3 +130,13 @@ qr_code_scanner:
     url: https://github.com/xeinebiu/qr_code_scanner.git
     ref: fix_break_changes_platform
 barcode_widget: ^2.0.1
+
+# iOS Camera Permission
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Used to demonstrate image picker plugin</string>
+<key>NSCameraUsageDescription</key>
+<string>Used to demonstrate image picker plugin</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>Needed to access location</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Needed to access location</string>
