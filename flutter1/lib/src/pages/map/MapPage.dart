@@ -265,4 +265,29 @@ class _MapPageState extends State<MapPage> {
       }
     } catch (e) {}
   }
+
+
+  Future<bool> _checkPermission() async {
+    var permissionGranted = await _locationService.hasPermission();
+    if (permissionGranted == PermissionStatus.granted) {
+      return true;
+    }
+    permissionGranted = await _locationService.requestPermission();
+    return permissionGranted == PermissionStatus.granted;
+  }
+
+  Future<bool> _checkServiceGPS() async {
+    var serviceEnabled = await _locationService.serviceEnabled();
+    if (serviceEnabled) {
+      return true;
+    }
+    serviceEnabled = await _locationService.requestService();
+    return serviceEnabled;
+  }
+
+  Future<void> _animateCamera(LatLng latLng) async {
+    _controller.future.then((controller) {
+      controller.animateCamera(CameraUpdate.newLatLngZoom(latLng, 16));
+    });
+  }
 }
