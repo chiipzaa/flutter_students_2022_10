@@ -259,8 +259,8 @@ class CustomDrawer extends StatelessWidget {
         builder: (context) {
           return Center(
               child: Text(
-            "1234",
-            style: TextStyle(color: Colors.white),
+            "My Dialog",
+            style: TextStyle(color: Colors.white, fontSize: 30),
           ));
         });
   }
