@@ -222,7 +222,7 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.qr_code_scanner, color: Colors.blueGrey),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, AppRoute.map),
             title: Text("Map"),
             leading: Icon(Icons.map_outlined, color: Colors.blue),
           ),
