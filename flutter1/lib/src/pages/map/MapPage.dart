@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter1/src/app.dart';
 import 'package:flutter1/src/constants/asset.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/common.dart';
 
@@ -87,6 +89,31 @@ class _MapPageState extends State<MapPage> {
     return "Pos: $lat, $lng";
   }
 
+  void _launchMaps({required double lat, required double lng}) async {
+    final parameter = '?z=16&q=$lat,$lng';
+
+    if (Platform.isIOS) {
+      final googleMap = Uri.parse('comgooglemaps://' + parameter);
+      final appleMap = Uri.parse('https://maps.apple.com/' + parameter);
+      if (await canLaunchUrl(googleMap)) {
+        await launchUrl(googleMap);
+        return;
+      }
+      if (await canLaunchUrl(appleMap)) {
+        await launchUrl(appleMap);
+        return;
+      }
+    } else {
+      final googleMapURL = Uri.parse('https://maps.google.com/' + parameter);
+      if (await canLaunchUrl(googleMapURL)) {
+        await launchUrl(googleMapURL);
+        return;
+      }
+    }
+    throw 'Could not launch url';
+  }
+
+
   Future<void> _addMarker(LatLng position) async {
     final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
     final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
@@ -109,6 +136,7 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
+
   Future<void> _dummyLocation() async {
     await Future.delayed(Duration(seconds: 2));
 
@@ -117,8 +145,11 @@ class _MapPageState extends State<MapPage> {
     }
 
     _controller.future.then(
-          (controller) => controller.moveCamera(
-        CameraUpdate.newLatLngBounds(_boundsFromLatLngList(_dummyLatLng), 100),
+      (controller) => controller.moveCamera(
+        CameraUpdate.newLatLngBounds(
+          _boundsFromLatLngList(_dummyLatLng),
+          100,
+        ),
       ),
     );
     setState(() {});
@@ -142,12 +173,12 @@ class _MapPageState extends State<MapPage> {
       southwest: LatLng(x0!, y0!),
     );
   }
+
   // end1
 
   Future<void> testMarker() async {
     final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
     final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
-
 
     _markers.add(
       Marker(
