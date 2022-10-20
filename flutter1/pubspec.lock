@@ -285,12 +285,10 @@ packages:
   location:
     dependency: "direct main"
     description:
-      path: "packages/location"
-      ref: HEAD
-      resolved-ref: "91fc47700e0645fc4d4616fe8123672fa0b5e9c5"
-      url: "https://github.com/Yczar/flutterlocation.git"
-    source: git
-    version: "4.3.0"
+      name: location
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.4.0"
   location_platform_interface:
     dependency: transitive
     description:
@@ -420,12 +418,10 @@ packages:
   qr_code_scanner:
     dependency: "direct main"
     description:
-      path: "."
-      ref: fix_break_changes_platform
-      resolved-ref: "0feca6f15042c279ff575c559a3430df917b623d"
-      url: "https://github.com/xeinebiu/qr_code_scanner.git"
-    source: git
-    version: "0.7.0"
+      name: qr_code_scanner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   qr_flutter:
     dependency: "direct main"
     description:

@@ -4,6 +4,8 @@ import 'package:flutter1/src/bloc/login/login_bloc.dart';
 import 'package:flutter1/src/constants/asset.dart';
 import 'package:flutter1/src/models/Product.dart';
 import 'package:flutter1/src/pages/app_routes.dart';
+import 'package:flutter1/src/pages/home/widgets/dialog_qr_image.dart';
+import 'package:flutter1/src/pages/home/widgets/dialog_scan_qrcode.dart';
 import 'package:flutter1/src/pages/home/widgets/product_item.dart';
 import 'package:flutter1/src/services/network_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -210,12 +212,12 @@ class CustomDrawer extends StatelessWidget {
             leading: const FaIcon(FontAwesomeIcons.barcode, color: Colors.deepOrange),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () => _showDialogQRImage(context),
             title: Text("QRCode"),
             leading: Icon(Icons.qr_code, color: Colors.green),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () => _showScanQRCode(context),
             title: Text("Scanner"),
             leading: const Icon(Icons.qr_code_scanner, color: Colors.blueGrey),
           ),
@@ -290,5 +292,24 @@ class CustomDrawer extends StatelessWidget {
             ),
           );
         });
+  }
+
+  void _showDialogQRImage(context) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) => const DialogQRImage(
+        'www.codemobiles.com',
+        image: Asset.pinBikerImage,
+      ),
+    );
+  }
+
+  void _showScanQRCode(context) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) => DialogScanQRCode(),
+    );
   }
 }
