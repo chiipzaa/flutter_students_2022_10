@@ -68,7 +68,9 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   CircularProgressIndicator(color: Colors.black),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Text("Loading"),
                 ],
               ),
@@ -201,7 +203,7 @@ class CustomDrawer extends StatelessWidget {
         children: [
           _buildProfile(),
           ListTile(
-            onTap: () {},
+            onTap: () => _showBarcodeDialog(context),
             title: Text("BarCode"),
             leading: const FaIcon(FontAwesomeIcons.barcode, color: Colors.deepOrange),
           ),
@@ -250,4 +252,16 @@ class CustomDrawer extends StatelessWidget {
         accountName: Text('CMDev'),
         accountEmail: Text('support@codemobiles.com'),
       );
+
+  void _showBarcodeDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+              child: Text(
+            "1234",
+            style: TextStyle(color: Colors.white),
+          ));
+        });
+  }
 }

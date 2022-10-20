@@ -15,7 +15,7 @@ class ManagementPage extends StatefulWidget {
 
 class _ManagementPageState extends State<ManagementPage> {
   final _form = GlobalKey<FormState>();
-  var _product = Product(name: "", price: 0, stock: 0);
+  var _product = Product(name: "", price: 100, stock: 99);
   var _editMode = false;
   File? _imageFile;
 
