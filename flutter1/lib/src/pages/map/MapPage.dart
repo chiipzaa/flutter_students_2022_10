@@ -5,12 +5,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/app.dart';
 import 'package:flutter1/src/constants/asset.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:maps_toolkit/maps_toolkit.dart' as maptoolkit;
 
 
+import '../../bloc/map/map_bloc.dart';
 import '../../services/common.dart';
 import '../../widgets/custom_flushbar.dart';
 
@@ -72,6 +75,24 @@ class _MapPageState extends State<MapPage> {
             )
           ],
         ));
+  }
+
+  // Tracking
+  Widget _buildTrackingButton() {
+    final isTracking = _locationSubscription != null;
+    return Padding(
+      padding: const EdgeInsets.only(right: 50.0),
+      child: FloatingActionButton.extended(
+        onPressed: _trackingLocation,
+        label: BlocBuilder<MapBloc, MapState>(
+          builder: (context, state) {
+            return Text(isTracking ? 'Stop Tracking ${formatPosition(state.currentPosition)}' : 'Start Tracking');
+          },
+        ),
+        backgroundColor: isTracking ? Colors.red : Colors.blue,
+        icon: FaIcon(isTracking ? FontAwesomeIcons.stop : FontAwesomeIcons.play),
+      ),
+    );
   }
 
 
@@ -223,5 +244,8 @@ class _MapPageState extends State<MapPage> {
     );
 
     setState(() {});
+  }
+
+  void _trackingLocation() {
   }
 }
