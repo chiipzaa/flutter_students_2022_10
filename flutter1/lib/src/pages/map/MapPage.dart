@@ -32,6 +32,12 @@ class _MapPageState extends State<MapPage> {
   ];
 
   @override
+  void initState() {
+    testMarket();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -71,4 +77,14 @@ class _MapPageState extends State<MapPage> {
   _buildSingleMarker({required LatLng position}) {}
 
   void _dummyLocation() {}
+
+  void testMarket() {
+    _markers.add(
+      Marker(
+        // important. unique id
+        markerId: MarkerId("0010"),
+        position: _initMap.target,
+      ),
+    );
+  }
 }
