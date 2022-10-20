@@ -255,12 +255,22 @@ class CustomDrawer extends StatelessWidget {
 
   void _showBarcodeDialog(BuildContext context) {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) {
           return Center(
-              child: Text(
-            "My Dialog",
-            style: TextStyle(color: Colors.white, fontSize: 30),
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "My Dialog",
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text("Dismiss"),
+              )
+            ],
           ));
         });
   }
