@@ -258,20 +258,25 @@ class CustomDrawer extends StatelessWidget {
         barrierDismissible: false,
         context: context,
         builder: (context) {
-          return Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "My Dialog",
-                style: TextStyle(color: Colors.white, fontSize: 30),
-              ),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text("Dismiss"),
-              )
-            ],
-          ));
+          return Dialog(
+            child: SizedBox(
+              height: 200,
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "My Dialog",
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text("Dismiss"),
+                  )
+                ],
+              )),
+            ),
+          );
         });
   }
 }
