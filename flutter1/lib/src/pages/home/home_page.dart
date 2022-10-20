@@ -28,9 +28,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _navigatorManagementPage([Product? product]) {
-    Navigator.pushNamed(context, AppRoute.management, arguments: product)
-        .then(
-          (value) => setState(() {}),
+    Navigator.pushNamed(context, AppRoute.management, arguments: product).then(
+      (value) => setState(() {}),
     );
   }
 
@@ -64,8 +63,15 @@ class _HomePageState extends State<HomePage> {
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.status != FetchStatus.success) {
-            return const Center(
-              child: Text("Loading"),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(color: Colors.black),
+                  SizedBox(height: 20,),
+                  Text("Loading"),
+                ],
+              ),
             );
           }
           final products = state.products;
