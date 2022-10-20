@@ -268,19 +268,18 @@ class CustomDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
-                      BarcodeWidget(
-                      // barcode: Barcode.qrCode(
-                      //   errorCorrectLevel: BarcodeQRCorrectionLevel.high,
-                      // ),
-                      barcode: Barcode.code128(),
-                data: data,
-                width: 200,
-                drawText: true,
-                errorBuilder: (cxt, err) => Center(
-                  child: Text("Uh oh! Something went wrong..."),
-                ),
-              );
-
+                  BarcodeWidget(
+                    // barcode: Barcode.qrCode(
+                    //   errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                    // ),
+                    barcode: Barcode.code128(),
+                    data: "1234971234908",
+                    width: 200,
+                    drawText: true,
+                    errorBuilder: (cxt, err) => const Center(
+                      child: Text("Uh oh! Something went wrong..."),
+                    ),
+                  ),
 
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
