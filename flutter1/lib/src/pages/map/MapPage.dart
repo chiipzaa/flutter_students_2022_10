@@ -8,8 +8,11 @@ import 'package:flutter1/src/constants/asset.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:maps_toolkit/maps_toolkit.dart' as maptoolkit;
+
 
 import '../../services/common.dart';
+import '../../widgets/custom_flushbar.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -80,7 +83,35 @@ class _MapPageState extends State<MapPage> {
         ));
   }
 
-  _buildSingleMarker({required LatLng position}) {}
+  _buildSingleMarker({required LatLng position}) async {
+    await _addMarker(position);
+    setState(() {
+    });
+  }
+
+  _buildPolygon() {
+    final polygon = Polygon(
+      polygonId: PolygonId("1"),
+      consumeTapEvents: true,
+      onTap: (){
+        final _mapToolkitLatLng = _dummyLatLng.map((e) {
+          return maptoolkit.LatLng(e.latitude, e.longitude);
+        }).toList();
+
+        final meterArea = maptoolkit.SphericalUtil.computeArea(_mapToolkitLatLng);
+        final kmArea = formatCurrency.format(meterArea/(1000*2));
+        CustomFlushbar.showSuccess(navigatorState.currentContext!, message: "Area: $kmArea ²Km");
+      },
+      points: _dummyLatLng,
+      strokeWidth: 2,
+      strokeColor: Colors.yellow,
+      fillColor: Colors.yellow.withOpacity(0.15),
+    );
+
+    _polygons.add(polygon);
+    setState(() {});
+  }
+
 
   // begin1
   String formatPosition(LatLng pos) {
@@ -126,7 +157,7 @@ class _MapPageState extends State<MapPage> {
         infoWindow: InfoWindow(
           title: formatPosition(position),
           snippet: "",
-          // onTap: () => _launchMaps(lat: position.latitude, lng: position.longitude),
+          onTap: () => _launchMaps(lat: position.latitude, lng: position.longitude),
         ),
         icon: bitmap,
         onTap: () async {
