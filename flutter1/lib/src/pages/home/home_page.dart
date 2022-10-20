@@ -8,6 +8,8 @@ import 'package:flutter1/src/pages/home/widgets/product_item.dart';
 import 'package:flutter1/src/services/network_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:barcode_widget/barcode_widget.dart';
+
 
 import '../../constants/network_api.dart';
 
@@ -255,7 +257,7 @@ class CustomDrawer extends StatelessWidget {
 
   void _showBarcodeDialog(BuildContext context) {
     showDialog(
-        barrierDismissible: false,
+        barrierDismissible: true,
         context: context,
         builder: (context) {
           return Dialog(
@@ -265,10 +267,21 @@ class CustomDrawer extends StatelessWidget {
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "My Dialog",
-                    style: TextStyle(color: Colors.black, fontSize: 30),
-                  ),
+
+                      BarcodeWidget(
+                      // barcode: Barcode.qrCode(
+                      //   errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                      // ),
+                      barcode: Barcode.code128(),
+                data: data,
+                width: 200,
+                drawText: true,
+                errorBuilder: (cxt, err) => Center(
+                  child: Text("Uh oh! Something went wrong..."),
+                ),
+              );
+
+
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
                     child: Text("Dismiss"),
