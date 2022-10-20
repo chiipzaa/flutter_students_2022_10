@@ -25,6 +25,15 @@ class _DialogScanQRCodeState extends State<DialogScanQRCode> {
             Stack(alignment: Alignment.center, children: [
               _buildQRView(),
               Container(
+                color: Colors.white,
+                child: IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.green,
+                    )),
+              ),
+              Container(
                 color: Colors.red,
                 width: double.infinity,
                 height: 1,
@@ -45,17 +54,17 @@ class _DialogScanQRCodeState extends State<DialogScanQRCode> {
   }
 
   SizedBox _buildQRView() => SizedBox(
-    height: 300,
-    child: QRView(
-      key: _qrKey,
-      onQRViewCreated: (QRViewController controller) {
-        controller.scannedDataStream.listen((scanData) {
-          controller.stopCamera();
-          setState(() {
-            code = scanData.code!;
-          });
-        });
-      },
-    ),
-  );
+        height: 300,
+        child: QRView(
+          key: _qrKey,
+          onQRViewCreated: (QRViewController controller) {
+            controller.scannedDataStream.listen((scanData) {
+              controller.stopCamera();
+              setState(() {
+                code = scanData.code!;
+              });
+            });
+          },
+        ),
+      );
 }
