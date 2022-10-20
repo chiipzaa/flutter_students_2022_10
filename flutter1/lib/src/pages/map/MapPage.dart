@@ -6,6 +6,8 @@ import 'package:flutter1/src/constants/asset.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
+import '../../services/common.dart';
+
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
 
@@ -34,7 +36,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void initState() {
-    testMarket();
+    testMarker();
     super.initState();
   }
 
@@ -79,18 +81,20 @@ class _MapPageState extends State<MapPage> {
 
   void _dummyLocation() {}
 
-  Future<void> testMarket() async {
+  Future<void> testMarker() async {
     final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
     final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
-
 
     _markers.add(
       Marker(
         // important. unique id
-        icon: ,
+        icon: bitmap,
         markerId: MarkerId("0010"),
         position: _initMap.target,
       ),
     );
+
+    setState(() {
+    });
   }
 }
