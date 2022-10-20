@@ -42,7 +42,8 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void initState() {
-    testMarker();
+    // testMarker();
+    _buildPolygon();
     super.initState();
   }
 
