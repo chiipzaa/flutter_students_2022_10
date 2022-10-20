@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'bloc/map/map_bloc.dart';
+
 final formatCurrency = NumberFormat('#,###.00');
 final formatNumber = NumberFormat('#,###');
 final navigatorState = GlobalKey<NavigatorState>();
@@ -22,12 +24,14 @@ class CMApp extends StatelessWidget {
     final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
     final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc());
     final managementBloc = BlocProvider<ManagementBloc>(create: (context) => ManagementBloc());
+    final mapBloc = BlocProvider<MapBloc>(create: (context) => MapBloc());
 
     return MultiBlocProvider(
       providers: [
         homeBloc,
         loginBloc,
         managementBloc,
+        mapBloc,
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
