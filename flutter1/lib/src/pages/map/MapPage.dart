@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/app.dart';
 import 'package:flutter1/src/constants/asset.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -79,11 +80,74 @@ class _MapPageState extends State<MapPage> {
 
   _buildSingleMarker({required LatLng position}) {}
 
-  void _dummyLocation() {}
+  // begin1
+  String formatPosition(LatLng pos) {
+    final lat = formatCurrency.format(pos.latitude);
+    final lng = formatCurrency.format(pos.longitude);
+    return "Pos: $lat, $lng";
+  }
+
+  Future<void> _addMarker(LatLng position) async {
+    final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
+    final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
+
+    _markers.add(
+      Marker(
+        // important. unique id
+        markerId: MarkerId(position.toString()),
+        position: position,
+        infoWindow: InfoWindow(
+          title: formatPosition(position),
+          snippet: "",
+          // onTap: () => _launchMaps(lat: position.latitude, lng: position.longitude),
+        ),
+        icon: bitmap,
+        onTap: () async {
+          //todo
+        },
+      ),
+    );
+  }
+
+  Future<void> _dummyLocation() async {
+    await Future.delayed(Duration(seconds: 2));
+
+    for (var latLng in _dummyLatLng) {
+      await _addMarker(latLng);
+    }
+
+    _controller.future.then(
+          (controller) => controller.moveCamera(
+        CameraUpdate.newLatLngBounds(_boundsFromLatLngList(_dummyLatLng), 100),
+      ),
+    );
+    setState(() {});
+  }
+
+  LatLngBounds _boundsFromLatLngList(List<LatLng> list) {
+    double? x0, x1, y0, y1 = 0;
+    for (LatLng latLng in list) {
+      if (x0 == null) {
+        x0 = x1 = latLng.latitude;
+        y0 = y1 = latLng.longitude;
+      } else {
+        if (latLng.latitude > x1!) x1 = latLng.latitude;
+        if (latLng.latitude < x0) x0 = latLng.latitude;
+        if (latLng.longitude > y1!) y1 = latLng.longitude;
+        if (latLng.longitude < y0!) y0 = latLng.longitude;
+      }
+    }
+    return LatLngBounds(
+      northeast: LatLng(x1!, y1!),
+      southwest: LatLng(x0!, y0!),
+    );
+  }
+  // end1
 
   Future<void> testMarker() async {
     final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
     final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
+
 
     _markers.add(
       Marker(
@@ -94,7 +158,6 @@ class _MapPageState extends State<MapPage> {
       ),
     );
 
-    setState(() {
-    });
+    setState(() {});
   }
 }
