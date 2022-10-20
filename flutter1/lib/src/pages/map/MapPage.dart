@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter1/src/app.dart';
 import 'package:flutter1/src/constants/asset.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:maps_toolkit/maps_toolkit.dart' as maptoolkit;
-
 
 import '../../bloc/map/map_bloc.dart';
 import '../../services/common.dart';
@@ -56,6 +56,7 @@ class _MapPageState extends State<MapPage> {
         appBar: AppBar(
           title: Text('MapPage'),
         ),
+        floatingActionButton: _buildTrackingButton(),
         body: Column(
           children: [
             Header(),
@@ -95,7 +96,6 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-
   Header() {
     return Container(
         color: Colors.black87,
@@ -108,21 +108,20 @@ class _MapPageState extends State<MapPage> {
 
   _buildSingleMarker({required LatLng position}) async {
     await _addMarker(position);
-    setState(() {
-    });
+    setState(() {});
   }
 
   _buildPolygon() {
     final polygon = Polygon(
       polygonId: PolygonId("1"),
       consumeTapEvents: true,
-      onTap: (){
+      onTap: () {
         final _mapToolkitLatLng = _dummyLatLng.map((e) {
           return maptoolkit.LatLng(e.latitude, e.longitude);
         }).toList();
 
         final meterArea = maptoolkit.SphericalUtil.computeArea(_mapToolkitLatLng);
-        final kmArea = formatCurrency.format(meterArea/(1000*2));
+        final kmArea = formatCurrency.format(meterArea / (1000 * 2));
         CustomFlushbar.showSuccess(navigatorState.currentContext!, message: "Area: $kmArea ²Km");
       },
       points: _dummyLatLng,
@@ -134,7 +133,6 @@ class _MapPageState extends State<MapPage> {
     _polygons.add(polygon);
     setState(() {});
   }
-
 
   // begin1
   String formatPosition(LatLng pos) {
@@ -167,7 +165,6 @@ class _MapPageState extends State<MapPage> {
     throw 'Could not launch url';
   }
 
-
   Future<void> _addMarker(LatLng position) async {
     final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
     final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
@@ -189,7 +186,6 @@ class _MapPageState extends State<MapPage> {
       ),
     );
   }
-
 
   Future<void> _dummyLocation() async {
     await Future.delayed(Duration(seconds: 2));
@@ -246,6 +242,27 @@ class _MapPageState extends State<MapPage> {
     setState(() {});
   }
 
-  void _trackingLocation() {
+  Future<void> _trackingLocation() async {
+    // Start / Stop tracking
+    if (_locationSubscription != null) {
+      _locationSubscription?.cancel();
+      _locationSubscription = null;
+      _markers.clear();
+      setState(() {});
+      return;
+    }
+
+    try {
+      // Check avaliablity and permission service
+      final serviceEnabled = await _checkServiceGPS();
+      if (!serviceEnabled) {
+        throw PlatformException(code: 'SERVICE_STATUS_DENIED');
+      }
+
+      final permissionGranted = await _checkPermission();
+      if (!permissionGranted) {
+        throw PlatformException(code: 'PERMISSION_DENIED');
+      }
+    } catch (e) {}
   }
 }
