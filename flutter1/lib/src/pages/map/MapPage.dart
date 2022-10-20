@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/constants/asset.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -78,10 +79,15 @@ class _MapPageState extends State<MapPage> {
 
   void _dummyLocation() {}
 
-  void testMarket() {
+  Future<void> testMarket() async {
+    final Uint8List markerIcon = await getBytesFromAsset(Asset.pinBikerImage, width: 150);
+    final BitmapDescriptor bitmap = BitmapDescriptor.fromBytes(markerIcon);
+
+
     _markers.add(
       Marker(
         // important. unique id
+        icon: ,
         markerId: MarkerId("0010"),
         position: _initMap.target,
       ),
