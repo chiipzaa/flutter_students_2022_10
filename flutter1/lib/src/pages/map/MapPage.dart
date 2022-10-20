@@ -263,9 +263,32 @@ class _MapPageState extends State<MapPage> {
       if (!permissionGranted) {
         throw PlatformException(code: 'PERMISSION_DENIED');
       }
+
+      // condition to tracking
+      await _locationService.changeSettings(
+        accuracy: LocationAccuracy.high,
+        interval: 10000,
+        distanceFilter: 15,
+      ); // meters.
+
+      _locationSubscription = _locationService.onLocationChanged.listen(
+            (locationData) async {
+          _markers.clear();
+          final latLng = LatLng(
+            locationData.latitude!,
+            locationData.longitude!,
+          );
+          await _addMarker(latLng);
+          _animateCamera(latLng);
+          setState(() {});
+
+          // Send new location to server
+          context.read<MapBloc>().add(MapEvent_SubmitLocation(position: latLng));
+        },
+      );
+
     } catch (e) {}
   }
-
 
   Future<bool> _checkPermission() async {
     var permissionGranted = await _locationService.hasPermission();
