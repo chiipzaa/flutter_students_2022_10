@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
@@ -25,10 +26,41 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late FirebaseMessaging messaging;
+
   @override
   void initState() {
     context.read<HomeBloc>().add(HomeEvent_Fetch());
     super.initState();
+  }
+
+
+  void setupNotification(){
+    messaging = FirebaseMessaging.instance;
+    messaging.getToken().then((value){
+      print(value);
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
+      print("message recieved");
+      print(event.notification!.body);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Notification"),
+              content: Text(event.notification!.body!),
+              actions: [
+                TextButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
   }
 
   void _navigatorManagementPage([Product? product]) {
