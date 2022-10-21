@@ -25,7 +25,7 @@ keytool -genkey -v -keystore key.jks -keyalg RSA -keysize 2048 -validity 10000 -
 3. Clean and Run (check Android Manifest and Info.plist)
 
 
-
+flutter pub add flutter_launcher_icons
 flutter pub run flutter_launcher_icons:main
 flutter run --release
 

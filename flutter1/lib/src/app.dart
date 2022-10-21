@@ -34,6 +34,7 @@ class CMApp extends StatelessWidget {
         mapBloc,
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         navigatorKey: navigatorState,
         theme: ThemeData(
