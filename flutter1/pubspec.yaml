@@ -56,10 +56,20 @@ dependencies:
   location: ^4.4.0
   barcode_widget: ^2.0.1
   qr_code_scanner: ^1.0.1
-  flutter_launcher_icons: ^0.10.0
+
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: false
+  remove_alpha_ios: true
+  image_path: "assets/icon/dog_circle.png"
 
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.10.0
+  change_app_package_name: ^1.1.0
+
+
   flutter_test:
     sdk: flutter
 
