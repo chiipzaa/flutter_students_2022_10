@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
@@ -38,6 +39,14 @@ class CMApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if (kReleaseMode) {
+      Logger.level = Level.nothing;
+    } else {
+      Logger.level = Level.debug;
+    }
+
+
     final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
     final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc());
     final managementBloc = BlocProvider<ManagementBloc>(create: (context) => ManagementBloc());

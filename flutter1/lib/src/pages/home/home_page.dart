@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter1/src/app.dart';
 import 'package:flutter1/src/bloc/home/home_bloc.dart';
 import 'package:flutter1/src/bloc/login/login_bloc.dart';
 import 'package:flutter1/src/constants/asset.dart';
@@ -39,7 +40,8 @@ class _HomePageState extends State<HomePage> {
   void setupNotification(){
     messaging = FirebaseMessaging.instance;
     messaging.getToken().then((value){
-      print("Push Token: " + value.toString());
+      // print("Push Token: " + value.toString());
+      loggerNoStack.i("Push Token: " + value.toString());
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
