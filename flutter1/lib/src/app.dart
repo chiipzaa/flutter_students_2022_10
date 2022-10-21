@@ -46,7 +46,6 @@ class CMApp extends StatelessWidget {
       Logger.level = Level.debug;
     }
 
-
     final homeBloc = BlocProvider<HomeBloc>(create: (context) => HomeBloc());
     final loginBloc = BlocProvider<LoginBloc>(create: (context) => LoginBloc());
     final managementBloc = BlocProvider<ManagementBloc>(create: (context) => ManagementBloc());
