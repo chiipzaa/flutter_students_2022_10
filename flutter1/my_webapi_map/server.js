@@ -13,6 +13,8 @@ app.get("/getProfile", (req, res)=>{
 });
 
 // curl "localhost:3000/register"
+// curl -X POST "localhost:3000/register"  -H 'Content-Type: application/json'  -d '{"username":"admin","password":"1234"}'
+
 app.post("/register", (req, res)=>{
   res.json(req.body);
 });
