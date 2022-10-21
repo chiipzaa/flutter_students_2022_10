@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("CodeMobiles"),
+        title: Text("CodeMobiles Flutter"),
         actions: [
           TextButton(
             onPressed: () => context.read<HomeBloc>().add(HomeEvent_ToggleGridAndListView()),
