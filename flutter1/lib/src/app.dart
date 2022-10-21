@@ -8,6 +8,7 @@ import 'package:flutter1/src/pages/home/home_page.dart';
 import 'package:flutter1/src/pages/login/login_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bloc/map/map_bloc.dart';
@@ -15,6 +16,22 @@ import 'bloc/map/map_bloc.dart';
 final formatCurrency = NumberFormat('#,###.00');
 final formatNumber = NumberFormat('#,###');
 final navigatorState = GlobalKey<NavigatorState>();
+
+final logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 1,
+    colors: true,
+  ),
+);
+
+final loggerNoStack = Logger(
+  printer: PrettyPrinter(
+    methodCount: 0,
+    colors: true,
+  ),
+);
+
+
 
 class CMApp extends StatelessWidget {
   const CMApp({super.key});

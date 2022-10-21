@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     context.read<HomeBloc>().add(HomeEvent_Fetch());
+    setupNotification();
     super.initState();
   }
 
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   void setupNotification(){
     messaging = FirebaseMessaging.instance;
     messaging.getToken().then((value){
-      print(value);
+      print("Push Token: " + value.toString());
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
